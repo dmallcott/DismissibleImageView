@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="border">72dp</dimen>
+    <item name="percentage" type="dimen">30%</item>
+</resources>
