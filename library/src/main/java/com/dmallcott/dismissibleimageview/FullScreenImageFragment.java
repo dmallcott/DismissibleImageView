@@ -25,6 +25,8 @@ public class FullScreenImageFragment extends DialogFragment {
     private static final String ARGUMENT_BITMAP = "ARGUMENT_BITMAP";
     private static final String ARGUMENT_URL = "ARGUMENT_URL";
 
+    private Bitmap bitmap;
+
     private ImageView imageView;
     private View topBorderView;
     private View bottomBorderView;
@@ -61,13 +63,17 @@ public class FullScreenImageFragment extends DialogFragment {
             // Do nothing
         }
 
-        if (getArguments().containsKey(ARGUMENT_BITMAP) && getArguments().getParcelable(ARGUMENT_BITMAP) != null) {
-            initialiseViews(view, (Bitmap) getArguments().getParcelable(ARGUMENT_BITMAP));
+        if (savedInstanceState != null) {
+            bitmap = savedInstanceState.getParcelable(ARGUMENT_BITMAP);
+            initialiseViews(view, bitmap);
+        } else if (getArguments().containsKey(ARGUMENT_BITMAP) && getArguments().getParcelable(ARGUMENT_BITMAP) != null) {
+            bitmap = getArguments().getParcelable(ARGUMENT_BITMAP);
+            initialiseViews(view, bitmap);
         } else if (getArguments().containsKey(ARGUMENT_URL) && getArguments().getParcelable(ARGUMENT_URL) != null) {
-
             Picasso.with(getContext()).load(getArguments().getString(ARGUMENT_URL)).into(new Target() {
                 @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                public void onBitmapLoaded(Bitmap bm, Picasso.LoadedFrom from) {
+                    bitmap = bm;
                     initialiseViews(view, bitmap);
                 }
 
@@ -105,6 +111,13 @@ public class FullScreenImageFragment extends DialogFragment {
             getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelable(ARGUMENT_BITMAP, Bitmap.createBitmap(bitmap));
     }
 
     private void initialiseViews(@NonNull final View view, @NonNull final Bitmap bitmap) {
@@ -208,8 +221,8 @@ public class FullScreenImageFragment extends DialogFragment {
             }
         }));
 
-        imageView.setImageBitmap(bitmap);
         imageView.setAdjustViewBounds(true);
+        imageView.setImageBitmap(bitmap);
 
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
