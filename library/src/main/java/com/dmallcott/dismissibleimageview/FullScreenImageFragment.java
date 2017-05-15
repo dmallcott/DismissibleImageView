@@ -89,14 +89,21 @@ public class FullScreenImageFragment extends DialogFragment {
     }
 
     @Override
+    public void onActivityCreated(Bundle arg0) {
+        super.onActivityCreated(arg0);
+
+        if (getDialog() != null) {
+            getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        }
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
 
-        final Dialog dialog = getDialog();
-
-        if (dialog != null) {
-            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        if (getDialog() != null) {
+            getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
     }
 
