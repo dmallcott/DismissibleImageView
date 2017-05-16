@@ -23,7 +23,7 @@ Add this in your root build.gradle at the end of repositories:
 Then add the dependency to your app's build.gradle.
 
 ```
-  compile 'com.github.dmallcott:DismissibleImageView:1.0.0'
+  compile 'com.github.dmallcott:DismissibleImageView:1.0.1'
 ```
 
 
