@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 27
+    buildToolsVersion '27.0.0'
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -22,7 +22,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:percent:25.3.1'
-    compile 'com.squareup.picasso:picasso:2.5.2' // Should I do this without depending on a library?
+    compile 'com.android.support:appcompat-v7:27.0.0'
+    compile 'com.android.support:percent:27.0.0'
+    compile 'com.squareup.picasso:picasso:2.5.2' // Can I do this without depending on a library?
 }
