@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final DismissibleImageView dismissibleImageView = (DismissibleImageView) findViewById(R.id.activity_main_dismissibleImageView);
+        dismissibleImageView.setFinalUrl("https://images.pexels.com/photos/96938/pexels-photo-96938.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb");
 
-        Picasso.with(this).load("http://www.readersdigest.ca/wp-content/uploads/2011/01/4-ways-cheer-up-depressed-cat.jpg").into(dismissibleImageView);
+        Picasso.with(this).load("https://images.pexels.com/photos/96938/pexels-photo-96938.jpeg?w=640&h=393&dpr=2&auto=compress&cs=tinysrgb").into(dismissibleImageView);
     }
 }
